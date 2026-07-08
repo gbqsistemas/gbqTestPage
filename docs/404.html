@@ -1,0 +1,45 @@
+<!-- public/404.html -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>GBQ | Redireccionando...</title>
+
+    <script type="text/javascript">
+      /*
+        GitHub Pages SPA fallback.
+
+        Cuando el usuario entra directo a una ruta como:
+        /productos
+        /tienda
+        /contacto
+        /btc-medical
+        /gbq-en-casa
+
+        GitHub Pages no encuentra ese archivo físico y carga 404.html.
+        Este script guarda la ruta original y redirige a la raíz.
+        Luego index.html recupera esa ruta y React Router renderiza la página correcta.
+
+        IMPORTANTE:
+        Esta key debe coincidir con la usada en index.html:
+        "gbq_redirect_path"
+      */
+
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+
+      var redirectPath = path + search + hash;
+
+      sessionStorage.setItem("gbq_redirect_path", redirectPath);
+
+      window.location.replace("/");
+    </script>
+  </head>
+
+  <body>
+    <noscript>
+      GBQ requiere JavaScript para continuar.
+    </noscript>
+  </body>
+</html>

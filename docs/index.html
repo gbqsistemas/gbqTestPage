@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <script type="text/javascript">
+      /*
+        Recupera la ruta original guardada por public/404.html
+        y la restaura antes de que React Router monte la app.
+
+        IMPORTANTE:
+        Si también tienes un public/404.html, cambia allí la key
+        de "mj_redirect_path" a "gbq_redirect_path".
+      */
+
+      (function () {
+        var redirectPath = sessionStorage.getItem("gbq_redirect_path");
+
+        if (redirectPath) {
+          sessionStorage.removeItem("gbq_redirect_path");
+
+          if (redirectPath !== window.location.pathname) {
+            window.history.replaceState(null, "", redirectPath);
+          }
+        }
+      })();
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO base -->
+    <title>GBQ | Tecnología en estética y cosmetología</title>
+
+    <meta
+      name="description"
+      content="GBQ es una empresa con 20 años de trayectoria en la distribución de productos cosméticos y médico-estéticos. Ofrece productos, capacitaciones, mantenimiento, reparación y alquiler de equipos para profesionales de la estética y la cosmetología."
+    />
+
+    <meta
+      name="keywords"
+      content="GBQ, GBQ SAS, tecnología estética, cosmetología, productos cosméticos, productos médico-estéticos, estética profesional, equipos de estética, mantenimiento de equipos estéticos, reparación de equipos estéticos, alquiler de equipos estéticos, capacitaciones estética, Medellín, BTC Medical, GBQ en Casa"
+    />
+
+    <meta name="author" content="GBQ SAS" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#1A3760" />
+
+    <link rel="canonical" href="https://www.gbq.com.co/" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/logogbq.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/logogbq.ico" />
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:site_name" content="GBQ" />
+    <meta
+      property="og:title"
+      content="GBQ | Tecnología en estética y cosmetología"
+    />
+    <meta
+      property="og:description"
+      content="En GBQ, con 20 años de trayectoria, distribuimos productos cosméticos y médico-estéticos. También ofrecemos capacitaciones, mantenimiento, reparación y alquiler de equipos."
+    />
+    <meta property="og:url" content="https://www.gbq.com.co/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+
+    <!-- 
+      Cambia esta imagen cuando ya tengas el arte OG final.
+      Recomendado: 1200x630 px.
+    -->
+    <meta
+      property="og:image"
+      content="https://www.gbq.com.co/og-gbq.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="GBQ tecnología en estética y cosmetología"
+    />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="GBQ | Tecnología en estética y cosmetología"
+    />
+    <meta
+      name="twitter:description"
+      content="Productos cosméticos y médico-estéticos, capacitaciones, mantenimiento, reparación y alquiler de equipos para profesionales de la estética."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.gbq.com.co/og-gbq.jpg"
+    />
+
+    <!-- Datos estructurados: Organización -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "GBQ SAS",
+        "alternateName": "GBQ",
+        "url": "https://www.gbq.com.co/",
+        "logo": "https://www.gbq.com.co/logo-gbq.png",
+        "description": "GBQ es una empresa con 20 años de trayectoria dedicada a distribuir productos cosméticos y médico-estéticos. También ofrece capacitaciones, mantenimiento, reparación y alquiler de equipos.",
+        "telephone": "+57 312 247 7755",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Cll 32 EE # 76 - 149 Laureles",
+          "addressLocality": "Medellín",
+          "addressRegion": "Antioquia",
+          "addressCountry": "CO"
+        },
+        "sameAs": [
+          "https://www.instagram.com/gbqsas/"
+        ],
+        "brand": [
+          {
+            "@type": "Brand",
+            "name": "GBQ"
+          },
+          {
+            "@type": "Brand",
+            "name": "BTC Medical"
+          },
+          {
+            "@type": "Brand",
+            "name": "GBQ en Casa"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Datos estructurados: Sitio web -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "GBQ",
+        "url": "https://www.gbq.com.co/",
+        "inLanguage": "es-CO",
+        "publisher": {
+          "@type": "Organization",
+          "name": "GBQ SAS",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.gbq.com.co/logo-gbq.png"
+          }
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.gbq.com.co/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <!-- Datos estructurados: navegación principal -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "GBQ Main Sections",
+        "itemListElement": [
+          {
+            "@type": "SiteNavigationElement",
+            "position": 1,
+            "name": "Inicio",
+            "url": "https://www.gbq.com.co/"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 2,
+            "name": "Productos",
+            "url": "https://www.gbq.com.co/productos"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 3,
+            "name": "Tienda",
+            "url": "https://www.gbq.com.co/tienda"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 4,
+            "name": "Nuestras Marcas",
+            "url": "https://www.gbq.com.co/nuestras-marcas"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 5,
+            "name": "BTC Medical",
+            "url": "https://www.gbq.com.co/btc-medical"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 6,
+            "name": "GBQ en Casa",
+            "url": "https://www.gbq.com.co/gbq-en-casa"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 7,
+            "name": "Contacto",
+            "url": "https://www.gbq.com.co/contacto"
+          }
+        ]
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BB6gca7s.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DMHjw7ac.css">
+  </head>
+
+  <body>
+    <noscript>
+      GBQ requiere JavaScript para mostrar correctamente la experiencia web.
+    </noscript>
+
+    <div id="root"></div>
+
+  </body>
+</html>
