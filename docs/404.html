@@ -1,39 +1,100 @@
 <!-- public/404.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta name="robots" content="noindex" />
+
     <title>GBQ | Redireccionando...</title>
 
     <script type="text/javascript">
       /*
-        GitHub Pages SPA fallback.
+        GitHub Pages SPA fallback para:
 
-        Cuando el usuario entra directo a una ruta como:
-        /productos
-        /tienda
-        /contacto
-        /btc-medical
-        /gbq-en-casa
+        https://gbqsistemas.github.io/gbqTestPage/
 
-        GitHub Pages no encuentra ese archivo físico y carga 404.html.
-        Este script guarda la ruta original y redirige a la raíz.
-        Luego index.html recupera esa ruta y React Router renderiza la página correcta.
+        Ejemplo:
 
-        IMPORTANTE:
-        Esta key debe coincidir con la usada en index.html:
-        "gbq_redirect_path"
+        El usuario abre:
+        /gbqTestPage/especial/bpl1
+
+        GitHub Pages sirve este 404.html.
+
+        El script:
+        1. Guarda la dirección completa solicitada.
+        2. Redirige a /gbqTestPage/.
+        3. index.html recupera la dirección.
+        4. BrowserRouter muestra la ruta correcta.
+
+        Esta key debe coincidir exactamente con index.html.
       */
 
-      var path = window.location.pathname;
-      var search = window.location.search;
-      var hash = window.location.hash;
+      (function () {
+        var storageKey =
+          "gbq_redirect_path";
 
-      var redirectPath = path + search + hash;
+        var repositoryBase =
+          "/gbqTestPage";
 
-      sessionStorage.setItem("gbq_redirect_path", redirectPath);
+        var pathname =
+          window.location.pathname || "/";
 
-      window.location.replace("/");
+        var search =
+          window.location.search || "";
+
+        var hash =
+          window.location.hash || "";
+
+        /*
+          Solo aceptamos rutas pertenecientes al repositorio.
+
+          Evita guardar accidentalmente una ruta externa
+          o perteneciente a otro proyecto.
+        */
+        var belongsToRepository =
+          pathname === repositoryBase ||
+          pathname === repositoryBase + "/" ||
+          pathname.indexOf(
+            repositoryBase + "/"
+          ) === 0;
+
+        if (!belongsToRepository) {
+          window.location.replace(
+            window.location.origin +
+              repositoryBase +
+              "/"
+          );
+
+          return;
+        }
+
+        var redirectPath =
+          pathname + search + hash;
+
+        try {
+          sessionStorage.setItem(
+            storageKey,
+            redirectPath
+          );
+        } catch (error) {
+          console.error(
+            "[GBQ 404] No fue posible guardar la ruta solicitada:",
+            error
+          );
+        }
+
+        window.location.replace(
+          window.location.origin +
+            repositoryBase +
+            "/"
+        );
+      })();
     </script>
   </head>
 
@@ -41,5 +102,7 @@
     <noscript>
       GBQ requiere JavaScript para continuar.
     </noscript>
+
+    <p>Redireccionando a GBQ...</p>
   </body>
 </html>

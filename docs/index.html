@@ -5,23 +5,73 @@
 
     <script type="text/javascript">
       /*
-        Recupera la ruta original guardada por public/404.html
+        Recupera la ruta guardada por public/404.html
         y la restaura antes de que React Router monte la app.
 
-        IMPORTANTE:
-        Si también tienes un public/404.html, cambia allí la key
-        de "mj_redirect_path" a "gbq_redirect_path".
+        Ejemplo guardado:
+
+        /gbqTestPage/especial/bpl1
+
+        BrowserRouter usa basename="/gbqTestPage",
+        por lo que React Router interpretará internamente:
+
+        /especial/bpl1
       */
 
       (function () {
-        var redirectPath = sessionStorage.getItem("gbq_redirect_path");
+        var storageKey =
+          "gbq_redirect_path";
 
-        if (redirectPath) {
-          sessionStorage.removeItem("gbq_redirect_path");
+        var repositoryBase =
+          "/gbqTestPage";
 
-          if (redirectPath !== window.location.pathname) {
-            window.history.replaceState(null, "", redirectPath);
+        try {
+          var redirectPath =
+            sessionStorage.getItem(storageKey);
+
+          if (!redirectPath) {
+            return;
           }
+
+          sessionStorage.removeItem(storageKey);
+
+          /*
+            Por seguridad, la dirección restaurada debe
+            pertenecer al proyecto actual.
+          */
+          var belongsToRepository =
+            redirectPath === repositoryBase ||
+            redirectPath ===
+              repositoryBase + "/" ||
+            redirectPath.indexOf(
+              repositoryBase + "/"
+            ) === 0;
+
+          if (!belongsToRepository) {
+            return;
+          }
+
+          var currentUrl =
+            window.location.pathname +
+            window.location.search +
+            window.location.hash;
+
+          if (redirectPath !== currentUrl) {
+            window.history.replaceState(
+              null,
+              "",
+              redirectPath
+            );
+          }
+        } catch (error) {
+          console.error(
+            "[GBQ index] No fue posible restaurar la ruta:",
+            error
+          );
+
+          sessionStorage.removeItem(
+            storageKey
+          );
         }
       })();
     </script>
@@ -209,8 +259,8 @@
         ]
       }
     </script>
-    <script type="module" crossorigin src="/gbqTestPage/assets/index-Bc9qpzUO.js"></script>
-    <link rel="stylesheet" crossorigin href="/gbqTestPage/assets/index-DMHjw7ac.css">
+    <script type="module" crossorigin src="/gbqTestPage/assets/index-AzGLflNy.js"></script>
+    <link rel="stylesheet" crossorigin href="/gbqTestPage/assets/index-DhsJUpWC.css">
   </head>
 
   <body>
